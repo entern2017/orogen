@@ -26,6 +26,22 @@ add_dependencies(${PROXYLIB_NAME}
 <% end %>
 
 
+<%= 
+    result = ""
+if(project.typekit)
+    tk = project.typekit
+    result +=
+"target_link_libraries(${PROXYLIB_NAME} #{tk.name}-typekit-gnulinux)
+"
+        
+    project.enabled_transports.each do |transport_name|
+    result +=
+"target_link_libraries(${PROXYLIB_NAME} #{tk.name}-transport-#{transport_name}-gnulinux)
+"
+    end
+end
+    result
+%>
 
 <%= Orocos::Generation.cmake_pkgconfig_link('core', '${PROXYLIB_NAME}', pkg_conf_deps) %>
 
