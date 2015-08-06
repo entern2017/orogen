@@ -20,11 +20,7 @@ typekits=<%= project.name if project.typekit %> <%= used_typekits.map { |tk| tk.
 Name: <%= project.name %>Tasks
 Version: <%= project.version %>
 Description: tasks defined for the <%= project.name %> project
-Requires: orocos_cpp_base @<%= project.name.upcase %>_TASKLIB_REQUIRES@ \
-<% proxy_gen.dependencies.each do |dependency| %>
-     <%=dependency.pkg_name%> \
-<% end %>
-
+Requires: orocos_cpp_base @<%= project.name.upcase %>_TASKLIB_REQUIRES@ <%= proxy_gen.dependencies.map { |dep| dep.pkg_name}.compact.join(" ") %>
 
 <%
   libs = project.tasklib_used_task_libraries.map { |tk| tk.tasklib_pkg.libs if tk.tasklib_pkg }.compact.to_set
