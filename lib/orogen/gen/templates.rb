@@ -23,8 +23,12 @@ module OroGen
 	# which is the orocos/templates directory directly in Orocos.rb
 	# sources.
 	def self.template_path(*path)
-	    reldir = File.join('orogen', 'templates', *path)
-	    File.expand_path(reldir, base_dir)
+            if(Pathname.new(File.join(*path)).absolute?)
+                File.join(*path)
+            else
+                reldir = File.join('orogen', 'templates', *path)
+                File.expand_path(reldir, base_dir)
+            end
 	end
 
 	# call-seq:
