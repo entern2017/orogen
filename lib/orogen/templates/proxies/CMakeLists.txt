@@ -43,6 +43,11 @@ end
     result
 %>
 
+find_package(RTTPlugin COMPONENTS rtt-typekit rtt-transport-corba rtt-transport-mqueue)
+target_link_libraries(${PROXYLIB_NAME} ${RTT_PLUGIN_rtt-typekit_LIBRARY})
+target_link_libraries(${PROXYLIB_NAME} ${RTT_PLUGIN_rtt-transport-corba_LIBRARY})
+target_link_libraries(${PROXYLIB_NAME} ${RTT_PLUGIN_rtt-transport-mqueue_LIBRARY})
+
 <%= Orocos::Generation.cmake_pkgconfig_link('core', '${PROXYLIB_NAME}', pkg_conf_deps) %>
 
 SET_TARGET_PROPERTIES(${PROXYLIB_NAME}
