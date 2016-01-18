@@ -495,10 +495,10 @@ EOF
                             method += "    ret.push_back(\"#{state_local_value_name(state_name, state_type)}\"); \n"
                         end
                         method += "    return ret;"
-
-                        hidden_operation("getExtendedStateMapping").
+# FIXME
+                        hidden_operation("getExtendedStateMapping", method).
                             returns("std::vector<std::string>").
-                            base_body(method).
+#                             base_body(method).
                             doc("returns a vector of string, that corresponds to the extended task states on the state port").
                             runs_in_caller_thread
                     end
